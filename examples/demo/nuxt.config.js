@@ -1,4 +1,6 @@
-const { resolve } = require('path')
+const {
+  resolve
+} = require('path')
 
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
@@ -13,7 +15,7 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    '/api': 'http://localhost:3000'
+    '/api': 'http://localhost:8000/'
   },
   auth: {
     redirect: {
@@ -22,8 +24,25 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { propertyName: 'token.accessToken' }
+          login: {
+            propertyName: 'token.accessToken'
+          }
         }
+      },
+      keycloak: {
+        client_id: 'omawari-ui',
+        server: 'http://localhost:18080',
+        realm: 'omawari-web'
+        // _scheme: 'oauth2',
+        // authorization_endpoint: 'http://localhost:18080/auth/realms/omawari-web/protocol/openid-connect/auth',
+        // userinfo_endpoint: 'http://localhost:18080/auth/realms/omawari-web/protocol/openid-connect/userinfo',
+        // access_token_endpoint: 'http://localhost:18080/auth/realms/omawari-web/protocol/openid-connect/token',
+        // scope: ['openid', 'profile', 'email'],
+        // response_type: 'code',
+        // token_type: 'Bearer',
+        // redirect_uri: null, // 'http://localhost:9000',
+        // client_id: 'omawari-ui',
+        // token_key: 'access_token'
       },
       auth0: {
         domain: 'nuxt-auth.auth0.com',
@@ -35,8 +54,7 @@ module.exports = {
         scope: ['public_profile', 'email', 'user_birthday']
       },
       google: {
-        client_id:
-          '956748748298-kr2t08kdbjq3ke18m3vkl6k843mra1cg.apps.googleusercontent.com'
+        client_id: '956748748298-kr2t08kdbjq3ke18m3vkl6k843mra1cg.apps.googleusercontent.com'
       },
       github: {
         client_id: process.env.GITHUB_CLIENT_ID,

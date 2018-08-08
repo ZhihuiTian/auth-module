@@ -9,6 +9,7 @@
           <b-nav-item to="/" exact>Home</b-nav-item>
           <b-nav-item to="/public">Public</b-nav-item>
           <b-nav-item to="/secure">Secure</b-nav-item>
+          <nuxt-link to="/secure">Secure-server</nuxt-link>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <template v-if="$auth.$state.loggedIn">
@@ -30,16 +31,17 @@
 </template>
 
 <script>
-import dotProp from 'dotprop'
+  import dotProp from 'dotprop'
 
-export default  {
-  computed: {
-    picture() {
-      return  dotProp(this.$auth.user, 'picture') ||  // OpenID
-              dotProp(this.$auth.user, 'picture.data.url') || // Facebook graph API
-              dotProp(this.$auth.user, 'avatar_url') // Github
+  export default {
+    computed: {
+      picture() {
+        return dotProp(this.$auth.user, 'picture') || // OpenID
+          dotProp(this.$auth.user, 'picture.data.url') || // Facebook graph API
+          dotProp(this.$auth.user, 'avatar_url') // Github
+      }
     }
+
   }
 
-}
 </script>

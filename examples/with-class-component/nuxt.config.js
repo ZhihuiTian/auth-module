@@ -1,4 +1,6 @@
-const { resolve } = require('path')
+const {
+  resolve
+} = require('path')
 
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
@@ -19,7 +21,9 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { propertyName: 'token.accessToken' }
+          login: {
+            propertyName: 'token.accessToken'
+          }
         }
       }
     }
@@ -29,6 +33,6 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    '/api': 'http://localhost:3000'
+    '/api': 'http://localhost:8000'
   }
 }
